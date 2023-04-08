@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+    <head>  
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">   
+        <title>Tienda</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+        <link rel="stylesheet" href="/css/styleTienda.css">
+
+    </head>
+
+    <body class="d-flex flex-column h-100">
+
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <div class="container-fluid">
+                    <a id="titulo" class="navbar-brand" href="/"></a>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page">Biblioteca</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="flex-shrink-0 main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3" th:each="libro : ${libros}">
+                        <div class="card" style="width: 15rem;">
+                            <img src="/src/ChainsawMan_1.png " class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title title-overflow" th:text="${libro.titulo}"></h5>
+                                <strong>Autor: </strong><span th:text="${libro.autor.nombre}"></span>
+                                <strong>Editorial: </strong><span th:text="${libro.editorial.nombre}"></span><br>
+                                <strong>ISBN: </strong><span th:text="${libro.isbn}"></span>
+                                <br>
+                                <a href="#" class="btn btn-primary">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer mt-auto py-3 bg-dark">
+            <div class="container">
+                <span class="text-muted">Luca Monteleone</span>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="/js/script_Index.js"></script>
+    </body>
+</html>

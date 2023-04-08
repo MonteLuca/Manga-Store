@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Subir Editorial</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+        <link rel="stylesheet" href="/css/styleForms.css">
+    </head>
+    <body>
+        <div class="container form-control rounded center">
+            <form action="/editorial/guardar" method="POST"> <!-- action se dispara hacia el servidor mediante una URL -->
+                <div class="mb-3 mt-2">
+                    <label for="editorial" class="form-label">Cargar Editorial</label>
+                    <input type="text" class="form-control" id="editorial" name="nombre" placeholder="Ingrese el nombre completo de la editorial">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">
+                    Subir Editorial
+                </button>
+            </form>
+        </div>
+    </body>
+</html>
+<!-- El valor "POST" (method="POST") indica que los datos del formulario se enviarán como parte del cuerpo
+de la solicitud HTTP POST. Esto significa que los datos se enviarán en un formato que no se
+muestra en la barra de direcciones del navegador y que generalmente se utiliza para enviar
+grandes cantidades de datos, como información de formularios completos, a un servidor web -->
+
+<!-- El atributo "action" en HTML se utiliza para especificar la URL del servidor web 
+al que se enviarán los datos del formulario cuando se envíe el formulario.
+En resumen, el atributo "action" especifica la dirección donde se enviarán 
+los datos del formulario y el atributo "method" especifica el método HTTP que se
+utilizará para enviar los datos del formulario. Juntos, estos atributos permiten
+enviar los datos del formulario a un servidor web y procesarlos de manera efectiva. --->
+
+<!-- A traves del atributo name (name="nombre") del input es donde viajara la informacion del input,
+este nombre tiene que coincidir con el nombre que llega como parametro a nuestro controlador -->

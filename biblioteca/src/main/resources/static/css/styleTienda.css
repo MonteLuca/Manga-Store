@@ -1,0 +1,33 @@
+.card {    
+    margin-top: 10px;
+    
+    margin-bottom: 10px;
+}
+
+.navbar {
+  height: 50px; /* Altura fija del Navbar */
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.main {
+  flex-grow: 1;
+  overflow-y: auto; /* Establece el desplazamiento vertical solo en el Main */
+}
+
+.footer {
+  height: 50px; /* Altura fija del Footer */
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.title-overflow {
+    text-overflow: ellipsis;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
