@@ -16,12 +16,11 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        
         http.authorizeRequests().antMatchers("/css/*",
                                              "/js/*",
                                              "/img/*",
-                                             "/**").permitAll();
-        
-        http.authorizeRequests().antMatchers("/autor/guardar").permitAll()
+                                             "/**").permitAll()
             .anyRequest().authenticated()
             .and()
         .formLogin()
@@ -30,5 +29,4 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
         
         http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
-    
 }
