@@ -5,6 +5,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 /**
  * @author monte
  */
@@ -19,6 +20,15 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                                              "/js/*",
                                              "/img/*",
                                              "/**").permitAll();
+        
+        http.authorizeRequests().antMatchers("/autor/guardar").permitAll()
+            .anyRequest().authenticated()
+            .and()
+        .formLogin()
+            .and()
+        .httpBasic();
+        
+        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
     
 }

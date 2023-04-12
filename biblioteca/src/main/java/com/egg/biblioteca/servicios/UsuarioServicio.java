@@ -4,12 +4,22 @@ import com.egg.biblioteca.entidades.Usuario;
 import com.egg.biblioteca.enumeraciones.Rol;
 import com.egg.biblioteca.exceptions.MiException;
 import com.egg.biblioteca.repositorios.UsuarioRepositorio;
+import java.util.ArrayList;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 /**
  * @author monte
  */
-public class UsuarioServicio {
+@Service
+public class UsuarioServicio implements UserDetailsService {
     
     @Autowired
     private UsuarioRepositorio usuarioRepo;
@@ -52,5 +62,26 @@ public class UsuarioServicio {
         }
         
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepo.buscarPorEmail(email);
+        
+        if (usuario != null) {
+            
+            List<GrantedAuthority> permisos = new ArrayList();
+            
+            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRol().toString()); //ROLE_USER
+            
+            permisos.add(p);
+            
+            return new User(usuario.getEmail(), usuario.getPassword(), permisos);
+            
+        } else {
+            
+            return null;
+            
+        }
+    } 
     
 }

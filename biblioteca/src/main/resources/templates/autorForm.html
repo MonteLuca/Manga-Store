@@ -11,6 +11,7 @@
     <body>
         <div class="container form-control rounded center">
             <form action="/autor/guardar" method="POST"> <!-- action se dispara hacia el servidor mediante una URL -->
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <div class="mb-3 mt-2">
                     <label for="autor" class="form-label">Cargar Autor</label>
                     <input type="text" class="form-control" id="autor" name="nombre" placeholder="Ingrese el nombre completo del autor">
