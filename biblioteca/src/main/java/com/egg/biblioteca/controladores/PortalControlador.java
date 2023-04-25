@@ -20,12 +20,22 @@ public class PortalControlador {
     private UsuarioServicio usuarioService;
     
     @GetMapping("/") //es una anotación en Spring que se utiliza para manejar solicitudes HTTP GET en una aplicación web. Permite asociar una ruta de solicitud con un método de controlador específico que se encarga de procesar la solicitud y devolver una respuesta adecuada.
-    public String index() {
+    public String inicio() {
+        return "login-register_Form.html";
+    }
+    
+    @GetMapping("/inicio")
+    public String index(){
         return "index.html";
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(@RequestParam(required = false) String error, ModelMap model) {
+        
+        if (error != null) {
+            model.put("error", "Usuario o contraseña invalido");
+        }
+        
         return "login.html";
     }
     
@@ -43,11 +53,16 @@ public class PortalControlador {
             model.put("exito", "Usuario registrado correctamente");
             
             return "index.html"; 
+            
         } catch (MiException ex) {
 
-            model.put("error", "Error");
+            model.put("error", ex.getMessage());
             
-            return "registro.html";
+            model.put("nombre",nombre);
+            
+            model.put("email",email);
+            
+            return "registrar.html";
             
         }
         

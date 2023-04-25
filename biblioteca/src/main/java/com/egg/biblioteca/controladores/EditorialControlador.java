@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,12 +29,13 @@ public class EditorialControlador {
     }
     
     @PostMapping("/guardar")
-    public String guardarEditorial(@RequestParam String nombre) {
+    public String guardarEditorial(@RequestParam String nombre, ModelMap model) {
         
         try {
             editorialService.crearEditorial(nombre);
+            model.put("exito","La editorial fue cargada con exito");
         } catch (MiException ex) {
-            Logger.getLogger(EditorialControlador.class.getName()).log(Level.SEVERE, null, ex);
+            model.put("error", ex.getMessage());
             return "editorialForm.html";
         }
         

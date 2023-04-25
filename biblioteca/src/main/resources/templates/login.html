@@ -10,14 +10,14 @@
     </head>
     <body>
         <div class="container form-control rounded center">
-            <form action="/autor/guardar" method="POST"> <!-- action se dispara hacia el servidor mediante una URL -->
+            <form th:action="@{/logincheck}" method="POST"> <!-- action se dispara hacia el servidor mediante una URL -->
                 <div class="mb-3 mt-2">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" name="nombre" placeholder="Ingrese su email">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Ingrese su email">
                 </div>
                 <div class="mb-3 mt-2">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input type="text" class="form-control" id="password" name="nombre" placeholder="Ingrese una contraseña">
+                    <input type="text" class="form-control" id="password" name="password" placeholder="Ingrese una contraseña">
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">
                     Ingresar

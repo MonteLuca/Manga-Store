@@ -1,52 +1,45 @@
 /* ETIQUETAS */
 html,body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    background-image: url(../src/logo-color.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 main > .container {
-  padding: 60px 15px 0;
+    padding: 60px 15px 0;
 }
 /* CLASES */
-.navbar {
-  height: 50px; /* Altura fija del Navbar */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
 .main {
-  flex-grow: 1;
-  overflow-y: auto; /* Establece el desplazamiento vertical solo en el Main */
+    flex-grow: 1;
+    overflow-y: auto; /* Establece el desplazamiento vertical solo en el Main */
 }
 
 .footer {
-  height: 50px; /* Altura fija del Footer */
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+    height: 50px; /* Altura fija del Footer */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .carousel-sm {
-  max-width: 400px; /* Define el ancho máximo del carrusel */
-  margin: auto; /* Centra el carrusel en la página */
+    max-width: 400px; /* Define el ancho máximo del carrusel */
+    margin: auto; /* Centra el carrusel en la página */
 }
 
 .carousel-sm .carousel-inner {
-  height: 200px; /* Define la altura del carrusel */
+    height: 200px; /* Define la altura del carrusel */
 }
 
 .carousel-sm .carousel-item {
-  height: 100%; /* Define la altura de los elementos internos del carrusel */
-}
-
-.teta {
-    align-items: end;
+    height: 100%; /* Define la altura de los elementos internos del carrusel */
 }

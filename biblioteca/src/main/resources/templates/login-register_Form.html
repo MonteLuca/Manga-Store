@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/style_lrg.css" type="text/css">
+        <script src="https://kit.fontawesome.com/77670f8379.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+        <title>Inicio de sesion</title>
+    </head>
+    <body>
+        <div class="container" id="main">
+            <div class="sign-up">
+                <form action="/registro" method="POST">
+                    <h1>Crear Cuenta</h1>
+                    <p>para ser parte de esta comunidad</p>
+                    <input type="text" name="nombre" placeholder="Nombre" required="">
+                    <input type="email" name="email" placeholder="Email" required="">
+                    <input type="password" name="password" placeholder="Contraseña" required="">
+                    <input type="password" name="password2" placeholder="Contraseña" required="">
+                    <button type="submit">Registrate</button>
+                </form>
+            </div>
+            <div class="sign-in">
+                <form th:action="@{/logincheck}" method="POST">
+                    <h1>Inicia Sesion</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="social"><i class="fa-brands fa-google"></i></a>
+                        <a href="#" class="social"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <p>o usa tu cuenta</p>
+                    <input type="email" name="email" placeholder="Email" required="">
+                    <input type="password" name="password" placeholder="Contraseña" required="">
+                    <a href="#">Olvidaste tu contraseña?</a>
+                    <button type="submit">Inicia Sesion</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-left">
+                        <h1>Hola de nuevo</h1>
+                        <p>Si ya tienes una cuenta solo inicia sesion</p>
+                        <button id="signIn"> Inicia Sesion</button>
+                    </div>
+                    <div class="overlay-right">
+                        <h1>Bienvenido</h1>
+                        <p>Si aun no contas con una cuenta, toca aqui para crearte una</p>
+                        <button id="signUp"> Registrate </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            const signUpButton = document.getElementById('signUp');
+            const signInButton = document.getElementById('signIn');
+            const main = document.getElementById('main');
+
+            signUpButton.addEventListener('click', () => {
+                main.classList.add("right-panel-active");
+            });
+
+            signInButton.addEventListener('click', () => {
+                main.classList.remove("right-panel-active");
+            });
+        </script>
+    </body>
+</html>

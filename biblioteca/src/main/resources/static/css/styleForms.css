@@ -1,6 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap");
+
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #FFCCEA;
+}
+
 .center {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.container {
+    border: 1px solid #333;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+                0 14px 10px rgba(0,0,0,0.22);
+    
+    width: 90vh;
+}
+
+.form-control {
+    border: 1px solid #333;
+}
+
+label, input {
+    color: black;
+}
+
+.footer {
+  height: 50px; /* Altura fija del Footer */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
