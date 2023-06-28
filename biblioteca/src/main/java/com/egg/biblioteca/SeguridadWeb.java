@@ -43,7 +43,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
             .formLogin().disable()
             .httpBasic(); */
 
-            http
+           /* http
                     .csrf().disable()
                     .sessionManagement()
                         .sessionCreationPolicy(SessionCreationPolicy.NEVER)
@@ -62,9 +62,27 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                     .and().logout()
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
-                        .permitAll();
+                        .permitAll(); */
                     
-        
+        http
+                .authorizeRequests()
+                    .antMatchers("/admin/*").hasRole("ADMIN")
+                    .antMatchers("/css/*","/js/*","/img/*","/**")
+                    .permitAll()
+                .and().formLogin()
+                        .loginPage("/")
+                        .loginProcessingUrl("/logincheck")
+                        .usernameParameter("email")
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/inicio")
+                        .permitAll()
+                .and().logout()
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .permitAll()
+                .and().csrf()
+                    .disable();
+           
     }
     
 }

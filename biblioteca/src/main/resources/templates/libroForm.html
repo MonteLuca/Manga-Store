@@ -10,12 +10,11 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;400&display=swap" rel="stylesheet">
-
     </head>
     
     <body>
         <div class="container form-control rounded center">
-            <form action="/libro/guardar" method="POST"> <!-- action se dispara hacia el servidor mediante una URL -->
+            <form action="/libro/guardar" method="POST" enctype="multipart/form-data"> <!-- action se dispara hacia el servidor mediante una URL -->
                 <div class="mb-3 mt-2">
                     <label for="isbn" class="form-label">ISBN</label>
                     <input type="number" class="form-control" id="isbn" name="isbn" placeholder="Ingrese el ISBN del libro">
@@ -34,8 +33,7 @@
                         <option disabled selected>Seleccione un autor</option>
                         <option th:each="autor : ${autores}"
                                 th:value="${autor.id}"
-                                th:text="${autor.nombre}"
-                                />
+                                th:text="${autor.nombre}"/>
                     </select>
                 </div>
                 <div class="mb-3 mt-2">
@@ -47,6 +45,10 @@
                                 th:text="${editorial.nombre}"
                                 />
                     </select>
+                </div>
+                <div class="mb-3 mt-2">
+                    <label for="imagen" class="form-label">Portada</label>
+                    <input type="file" class="form-control" id="imagen" name="archivo">
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">
                     Subir Libro

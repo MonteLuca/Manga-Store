@@ -6,6 +6,7 @@ import com.egg.biblioteca.exceptions.MiException;
 import com.egg.biblioteca.servicios.AutorServicio;
 import com.egg.biblioteca.servicios.EditorialServicio;
 import com.egg.biblioteca.servicios.LibroServicio;
+import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 /**
  * @author Luca Monteleone
  */
@@ -51,11 +53,12 @@ public class LibroControlador {
                                @RequestParam(required = false) Integer ejemplares,
                                @RequestParam Long idAutor,
                                @RequestParam Long idEditorial,
-                               ModelMap model) {
+                               ModelMap model,
+                               @RequestParam MultipartFile archivo) throws IOException {
         
         try {
            
-            libroService.crearLibro(isbn, titulo, ejemplares, idAutor, idEditorial);
+            libroService.crearLibro(isbn, titulo, ejemplares, idAutor, idEditorial, archivo);
             
             model.put("exito", "El libro se guardo correctamente en la base de datos");
             

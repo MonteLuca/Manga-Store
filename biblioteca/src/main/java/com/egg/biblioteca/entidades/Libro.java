@@ -4,9 +4,9 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.springframework.web.multipart.MultipartFile;
 /**
  * @author Luca Monteleone
  */
@@ -29,6 +29,9 @@ public class Libro {
     
     @ManyToOne //Le decimos que muchos libros van a tener una sola editorial 
     private Editorial editorial;
+    
+    @OneToOne
+    private Imagen imagen;
 
     public Libro() { }
 
@@ -78,6 +81,14 @@ public class Libro {
 
     public void setEditorial(Editorial editorial) {
         this.editorial = editorial;
+    }
+
+    public Imagen getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
     }
 
 }

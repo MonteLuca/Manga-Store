@@ -2,6 +2,7 @@ package com.egg.biblioteca.servicios;
 
 import com.egg.biblioteca.entidades.Autor;
 import com.egg.biblioteca.entidades.Editorial;
+import com.egg.biblioteca.entidades.Imagen;
 import com.egg.biblioteca.entidades.Libro;
 import com.egg.biblioteca.exceptions.MiException;
 import com.egg.biblioteca.repositorios.AutorRepositorio;
@@ -9,7 +10,6 @@ import com.egg.biblioteca.repositorios.EditorialRepositorio;
 import com.egg.biblioteca.repositorios.LibroRepositorio;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -34,11 +34,14 @@ public class LibroServicio {
     @Autowired
     private EditorialRepositorio editorialRepo;
 
-    @Transactional //Establecemos que si el metodo se ejecuta sin lanzar exceptions se persiste y se guarda en la base de datos, en cambio, si lanza exceptions no se persiste nada
-    public void crearLibro(Long isbn, String titulo, Integer ejemplares, Long idAutor, Long idEditorial) throws MiException {
+    @Autowired
+    private ImagenServicio imagenServ;
 
-        validar(isbn,titulo,ejemplares,idAutor,idEditorial);
-        
+    @Transactional //Establecemos que si el metodo se ejecuta sin lanzar exceptions se persiste y se guarda en la base de datos, en cambio, si lanza exceptions no se persiste nada
+    public void crearLibro(Long isbn, String titulo, Integer ejemplares, Long idAutor, Long idEditorial, MultipartFile archivo) throws MiException, IOException {
+
+        validar(isbn, titulo, ejemplares, idAutor, idEditorial);
+
         Libro libro = new Libro();
 
         Autor autor = autorRepo.findById(idAutor).get(); //Le decimos que el autor que guarde en Autor autor, lo busque por id [.findById(isbn)] y que me lo traiga [.findById(isbn).get()]
@@ -56,6 +59,10 @@ public class LibroServicio {
         libro.setAutor(autor);
 
         libro.setEditorial(editorial);
+
+        Imagen imagen = imagenServ.guardar(archivo);
+
+        libro.setImagen(imagen);
 
         libroRepo.save(libro); //.save recibe una entidad como parametro y la persiste en la base de datos
 
@@ -75,7 +82,7 @@ public class LibroServicio {
     public void modificarLibro(Long isbn, String titulo, Integer ejemplares, Long idAutor, Long idEditorial) throws MiException {
 
         validar(isbn, titulo, ejemplares, idAutor, idEditorial);
-        
+
         Optional<Libro> libroResp = libroRepo.findById(isbn); //Optional es una estructura de datos que indica que un valor puede o no estar presente
 
         Optional<Autor> autorResp = autorRepo.findById(idAutor);
@@ -115,9 +122,9 @@ public class LibroServicio {
         }
 
     }
-    
-    private void validar( Long isbn, String titulo, Integer ejemplares, Long idAutor, Long idEditorial ) throws MiException {
-        
+
+    private void validar(Long isbn, String titulo, Integer ejemplares, Long idAutor, Long idEditorial) throws MiException {
+
         if (isbn == null) {
             throw new MiException("El isbn no puede ser nulo");
         }
@@ -137,10 +144,10 @@ public class LibroServicio {
         if (idEditorial == null) {
             throw new MiException("El idEditorial no puede ser nulo");
         }
-        
+
     }
-    
-    private String guardarImagen(MultipartFile imagen) throws IOException {
+
+    /*private String guardarImagen(MultipartFile imagen) throws IOException {
         
         byte[] bytesImagen = imagen.getBytes();
         
@@ -148,6 +155,9 @@ public class LibroServicio {
         
         return imagen64;
         
+    }*/
+    public Libro getOne(Long id) {
+        return libroRepo.getOne(id);
     }
 
 }

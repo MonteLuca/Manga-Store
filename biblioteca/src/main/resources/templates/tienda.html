@@ -33,7 +33,9 @@
                 <div class="row">
                     <div class="col-md-3" th:each="libro : ${libros}">
                         <div class="card" style="width: 15rem;">
-                            <img src="/src/ChainsawMan_1.png " class="card-img-top" alt="...">
+                            <input type="hidden" id="base64String" th:value="${libro.imagen.contenido}">
+                            <img th:src="@{|data:image/jpeg;base64,${#strings.replace(#strings.trim(#strings.trim(base64String)),'\n','')}|}"
+                                 class="card-img-top" alt="foto portada">
                             <div class="card-body">
                                 <h5 class="card-title title-overflow" th:text="${libro.titulo}"></h5>
                                 <strong>Autor: </strong><span th:text="${libro.autor.nombre}"></span>
